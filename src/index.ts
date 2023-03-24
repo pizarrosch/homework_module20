@@ -33,10 +33,10 @@ const list = document.getElementById('myUL') as HTMLUListElement;
 // Create a new list item when clicking on the "Add" button
 function newElement() {
     const unorderedList = document.getElementById("myUL") as HTMLUListElement;
-    const li:HTMLLIElement = document.createElement("li");
+    const li: HTMLLIElement = document.createElement("li");
     const input = document.getElementById("myInput") as HTMLInputElement;
     const inputValue:string = input.value;
-    const t:Text = document.createTextNode(inputValue);
+    const t: Text = document.createTextNode(inputValue);
 
     li.appendChild(t);
     if (inputValue === '') {
@@ -46,8 +46,8 @@ function newElement() {
     }
     input.value = "";
 
-    const span:HTMLSpanElement = document.createElement("SPAN");
-    const txt:Text = document.createTextNode("\u00D7");
+    const span: HTMLSpanElement = document.createElement("SPAN");
+    const txt: Text = document.createTextNode("\u00D7");
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
