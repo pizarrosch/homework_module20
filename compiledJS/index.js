@@ -28,10 +28,10 @@ list.addEventListener('click', function (ev) {
     }
 }, false);
 // Create a new list item when clicking on the "Add" button
+const input = document.getElementById("myInput");
 function newElement() {
     const unorderedList = document.getElementById("myUL");
     const li = document.createElement("li");
-    const input = document.getElementById("myInput");
     const inputValue = input.value;
     const t = document.createTextNode(inputValue);
     li.appendChild(t);
@@ -47,10 +47,13 @@ function newElement() {
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
-    for (let i = 0; i < closeIcon.length; i++) {
-        closeIcon[i].addEventListener('click', function () {
-            const div = this.parentElement;
-            div.style.display = "none";
-        });
-    }
 }
+const addButton = document.querySelector('.addBtn');
+addButton.addEventListener('click', () => {
+    newElement();
+});
+input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        newElement();
+    }
+});

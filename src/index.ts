@@ -22,20 +22,21 @@ for (j = 0; j < closeIcon.length; j++) {
 
 // Add a "checked" symbol when clicking on a list item
 const list = document.getElementById('myUL') as HTMLUListElement;
-    list.addEventListener('click', function (ev) {
-        let target = ev.target as HTMLUListElement;
-        if (target.tagName === 'LI') {
-            target.classList.toggle('checked');
-        }
-    }, false);
+list.addEventListener('click', function (ev) {
+    let target = ev.target as HTMLUListElement;
+    if (target.tagName === 'LI') {
+        target.classList.toggle('checked');
+    }
+}, false);
 
 
 // Create a new list item when clicking on the "Add" button
+const input = document.getElementById("myInput") as HTMLInputElement;
+
 function newElement() {
     const unorderedList = document.getElementById("myUL") as HTMLUListElement;
     const li: HTMLLIElement = document.createElement("li");
-    const input = document.getElementById("myInput") as HTMLInputElement;
-    const inputValue:string = input.value;
+    const inputValue: string = input.value;
     const t: Text = document.createTextNode(inputValue);
 
     li.appendChild(t);
@@ -44,6 +45,7 @@ function newElement() {
     } else {
         unorderedList.appendChild(li);
     }
+
     input.value = "";
 
     const span: HTMLSpanElement = document.createElement("SPAN");
@@ -51,11 +53,17 @@ function newElement() {
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
-
-    for (let i = 0; i < closeIcon.length; i++) {
-        closeIcon[i].addEventListener('click', function(this: HTMLSpanElement) {
-            const div = this.parentElement as HTMLDivElement;
-            div.style.display = "none";
-        })
-    }
 }
+
+const addButton = document.querySelector('.addBtn') as HTMLButtonElement;
+
+addButton.addEventListener('click', () => {
+    newElement();
+})
+
+input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        newElement();
+    }
+})
+
